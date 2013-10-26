@@ -28,6 +28,7 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
 
 gem 'devise'
+gem 'omniauth' # required for devise omniauth support
 gem 'carrierwave'
 gem 'haml'
 
