@@ -7,4 +7,12 @@ class User < ActiveRecord::Base
   has_many :ideas
 
   validates :first_name, :last_name, :about_me, presence: true
+
+  def proper_name
+    "#{last_name}, #{first_name}"
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
+  end
 end

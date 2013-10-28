@@ -1,0 +1,12 @@
+%h2 Users
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Email
+  %tbody
+    - @users.each do |u|
+      %tr
+        %td= u.proper_name
+        %td= u.email
