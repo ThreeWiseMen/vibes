@@ -31,6 +31,7 @@ gem 'devise'
 gem 'omniauth' # required for devise omniauth support
 gem 'carrierwave'
 gem 'haml'
+gem 'formtastic'
 
 group :development, :test do
   gem 'rspec-rails'
