@@ -1,0 +1,16 @@
+%h2 Ideas
+
+link_to 'Create Idea', new_idea_path
+
+%table
+  %thead
+    %tr
+      %td Name
+      %td Leader
+      %td Creator
+  %tbody
+    - @ideas.each do |i|
+      %tr
+        %td= link_to i.name, idea_path(i)
+        %td= i.leader
+        %td= i.user.full_name

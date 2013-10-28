@@ -25,11 +25,6 @@ ActiveRecord::Schema.define(version: 20131026010244) do
     t.datetime "updated_at"
   end
 
-  create_table "user", force: true do |t|
-    t.string "ident",    limit: nil, null: false
-    t.string "password", limit: nil
-  end
-
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
