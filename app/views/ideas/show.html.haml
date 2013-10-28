@@ -5,3 +5,6 @@
 %h4= @idea.leader
 
 %p= @idea.description
+
+= link_to fa_icon('thumbs-o-up 4x', class: :green), idea_upvote_path(@idea)
+= link_to fa_icon('thumbs-o-down 4x flip-horizontal', class: :red), idea_downvote_path(@idea)

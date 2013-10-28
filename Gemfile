@@ -32,6 +32,7 @@ gem 'omniauth' # required for devise omniauth support
 gem 'carrierwave'
 gem 'haml'
 gem 'formtastic'
+gem 'font-awesome-rails'
 
 group :development, :test do
   gem 'rspec-rails'
