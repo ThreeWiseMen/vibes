@@ -5,5 +5,6 @@ describe Idea do
   it { should validate_presence_of(:leader) }
   it { should validate_presence_of(:description) }
   it { should validate_presence_of(:user) }
-  it { should belong_to(:idea) }
+  it { should belong_to(:user) }
+  it { should have_many(:votes) }
 end

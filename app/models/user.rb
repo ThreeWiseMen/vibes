@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
 
   has_many :ideas
+  has_many :votes
 
   validates :first_name, :last_name, :about_me, presence: true
 

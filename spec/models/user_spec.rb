@@ -7,4 +7,5 @@ describe User do
   it { should validate_presence_of(:last_name) }
   it { should validate_presence_of(:about_me) }
   it { should have_many(:ideas) }
+  it { should have_many(:votes) }
 end
