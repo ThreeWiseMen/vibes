@@ -6,4 +6,6 @@ Vibes::Application.routes.draw do
     get '/upvote' => 'ideas#upvote'
     get '/downvote' => 'ideas#downvote'
   end
+
+  resources :comments, only: :create
 end

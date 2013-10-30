@@ -7,6 +7,8 @@ class IdeasController < ApplicationController
 
   def show
     @idea = Idea.find(params[:id])
+    @comments = Comment.where(idea: @idea)
+    @comment = Comment.new({idea: @idea})
   end
 
   def new
