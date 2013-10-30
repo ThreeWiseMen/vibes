@@ -1,6 +1,7 @@
 class Idea < ActiveRecord::Base
   belongs_to :user
   has_many :votes
+  has_many :comments
 
   validates :name, :leader, :description, :user, presence: true
 

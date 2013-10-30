@@ -8,4 +8,5 @@ describe User do
   it { should validate_presence_of(:about_me) }
   it { should have_many(:ideas) }
   it { should have_many(:votes) }
+  it { should have_many(:comments) }
 end
