@@ -20,3 +20,7 @@
 .red {
   color: red;
 }
+
+li.hidden {
+  display: none;
+}
