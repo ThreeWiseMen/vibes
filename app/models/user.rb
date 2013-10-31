@@ -17,4 +17,8 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def vote_for_idea idea
+    Vote.where(idea: idea).first
+  end
 end
