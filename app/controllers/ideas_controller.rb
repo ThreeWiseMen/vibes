@@ -25,29 +25,39 @@ class IdeasController < ApplicationController
   def upvote
     @idea = Idea.find(params[:idea_id])
 
-    if @idea.vote_from_user? current_user
-      vote = @idea.vote_from_user(current_user)
-      vote.kind = 1
-      vote.save
+    if current_user == @idea.user
+      redirect_to idea_path(@idea)
     else
-      @idea.votes.build({user: current_user, kind: 1})
-      @idea.save
+
+      if @idea.vote_from_user? current_user
+        vote = @idea.vote_from_user(current_user)
+        vote.kind = 1
+        vote.save
+      else
+        @idea.votes.build({user: current_user, kind: 1})
+        @idea.save
+      end
+      redirect_to idea_path(@idea)
     end
-    redirect_to idea_path(@idea)
   end
 
   def downvote
     @idea = Idea.find(params[:idea_id])
 
-    if @idea.vote_from_user? current_user
-      vote = @idea.vote_from_user(current_user)
-      vote.kind = -1
-      vote.save
+    if current_user == @idea.user
+      redirect_to idea_path(@idea)
     else
-      @idea.votes.build({user: current_user, kind: -1})
-      @idea.save
-    end
 
-    redirect_to idea_path(@idea)
+      if @idea.vote_from_user? current_user
+        vote = @idea.vote_from_user(current_user)
+        vote.kind = -1
+        vote.save
+      else
+        @idea.votes.build({user: current_user, kind: -1})
+        @idea.save
+      end
+
+      redirect_to idea_path(@idea)
+    end
   end
 end
