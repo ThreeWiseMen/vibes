@@ -1,3 +1,5 @@
+= link_to 'Sign Out', destroy_user_session_path, class: :button, method: :delete
+
 %h2 Users
 
 %table
@@ -8,5 +10,5 @@
   %tbody
     - @users.each do |u|
       %tr
-        %td= u.proper_name
+        %td= link_to u.proper_name, user_path(u)
         %td= u.email
