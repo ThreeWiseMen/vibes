@@ -2,13 +2,39 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
-         :recoverable, :rememberable, :validatable
+  :recoverable, :rememberable, omniauth_providers: [:facebook]
 
   has_many :ideas
   has_many :votes
   has_many :comments
+  has_many :authentications
 
-  validates :first_name, :last_name, :about_me, presence: true
+  validates :email, :first_name, :last_name, presence: true
+  validates :email, uniqueness: true
+
+  def self.find_for_oauth(auth, signed_in_resorce=nil)
+    user = User.find_by_email(auth.info.email)
+
+    if user
+      unless user.authentications.where(provider: auth.provider).present?
+        Authentication.create(user: user, provider: auth.provider,
+                              uid: auth.uid)
+      end
+    else
+
+      user = User.create(email: auth.info.email)
+    end
+
+    user
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session['devise.facebook_data'] && session['devise.facebook_data']['raw_info']
+        user.email = data['email'] if user.email.blank?
+      end
+    end
+  end
 
   def proper_name
     "#{last_name}, #{first_name}"
