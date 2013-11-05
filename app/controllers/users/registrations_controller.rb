@@ -14,6 +14,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
     sign_in_and_redirect @user, event: :authentication
-    set_flash_message(:notice, :success, kind: 'Facebook')
+    set_flash_message(:notice, :success, kind: data.provider.capitalize)
   end
 end
