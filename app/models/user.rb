@@ -15,13 +15,20 @@ class User < ActiveRecord::Base
   def self.find_for_oauth(auth, signed_in_resorce=nil)
     user = User.find_by_email(auth.info.email)
 
+    unless user
+      authentication = Authentication.where("provider = ? AND uid = ?", auth.provider, auth.uid).first
+
+      if authentication
+        user = authentication.user
+      end
+    end
+
     if user
       unless user.authentications.where(provider: auth.provider).present?
         Authentication.create(user: user, provider: auth.provider,
                               uid: auth.uid)
       end
     else
-
       user = User.create(email: auth.info.email)
     end
 
