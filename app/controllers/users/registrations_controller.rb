@@ -6,10 +6,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user = User.create(params.required(:user).permit(:first_name, :last_name, :email, :password))
 
-    if session['devise.facebook_data']
+    if data = session['devise.oauth_data']
       @authentication = Authentication.new({user: @user})
-      @authentication.uid = session['devise.facebook_data'].uid
-      @authentication.provider = :facebook
+      @authentication.uid = data.uid
+      @authentication.provider = data.provider
       @authentication.save
     end
 
