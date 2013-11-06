@@ -13,9 +13,15 @@ class Idea < ActiveRecord::Base
     vote_from_user(user).present?
   end
 
+  def upvotes
+    votes.where(kind: 1)
+  end
+
+  def downvotes
+    votes.where(kind: -1)
+  end
+
   def score
-    sum = 0
-    votes.each { |v| sum += v.kind }
-    "#{sum} / #{votes.count}"
+    "u: #{upvotes.count} d: #{downvotes.count} t: #{votes.count}"
   end
 end
