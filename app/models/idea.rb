@@ -12,4 +12,10 @@ class Idea < ActiveRecord::Base
   def vote_from_user? (user)
     vote_from_user(user).present?
   end
+
+  def score
+    sum = 0
+    votes.each { |v| sum += v.kind }
+    "#{sum} / #{votes.count}"
+  end
 end

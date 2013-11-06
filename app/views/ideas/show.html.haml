@@ -6,6 +6,8 @@
 
 %p= @idea.description
 
+%p= @idea.score
+
 - if current_user
   - if current_user.vote_for_idea(@idea).present? && current_user.vote_for_idea(@idea).kind == 1
     = link_to fa_icon('thumbs-up 4x', class: :green), idea_upvote_path(@idea)
