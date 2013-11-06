@@ -15,4 +15,4 @@ idea = Idea.create({name: 'Something Cool', leader: 'This is the leader of my id
                    description: 'This is the description of my idea. It is a really goo one',
                    user: justin})
 
-Vote.create({user: other_user, idea: idea, kind: 1})
+Vote.create({user: justin, idea: idea, kind: 1})

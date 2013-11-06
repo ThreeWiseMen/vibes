@@ -52,6 +52,6 @@ class User < ActiveRecord::Base
   end
 
   def vote_for_idea idea
-    Vote.where(idea: idea).first
+    votes.where(idea: idea).first
   end
 end
