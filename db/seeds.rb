@@ -1,6 +1,7 @@
 User.delete_all
 Idea.delete_all
 Authentication.delete_all
+Vote.delete_all
 
 justin = User.create({first_name: 'Justin', last_name: 'Wood',
                        email: 'woodjk@threewisemen.ca', password: 'something',
@@ -13,3 +14,5 @@ other_user = User.create({first_name: 'Other', last_name: 'User',
 idea = Idea.create({name: 'Something Cool', leader: 'This is the leader of my idea',
                    description: 'This is the description of my idea. It is a really goo one',
                    user: justin})
+
+Vote.create({user: other_user, idea: idea, kind: 1})
