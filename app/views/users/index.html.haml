@@ -2,7 +2,7 @@
 
 = link_to 'Sign in Via Facebook', user_omniauth_authorize_path(:facebook), class: :button
 
-- if current_user
+- if user_signed_in?
   = link_to 'Sign Out', destroy_user_session_path, class: :button, method: :delete
 
 %h2 Users
