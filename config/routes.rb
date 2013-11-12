@@ -11,4 +11,13 @@ Vibes::Application.routes.draw do
   end
 
   resources :comments, only: :create
+
+  namespace :api, defaults: { format: :json } do
+    scope module: :v1 do
+      resources :ideas, only: [] do
+        get '/upvote' => 'ideas#upvote'
+        get '/downvote' => 'ideas#downvote'
+      end
+    end
+  end
 end
