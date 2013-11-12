@@ -26,3 +26,7 @@
 li.hidden {
   display: none;
 }
+
+.clickable {
+  cursor: pointer;
+}

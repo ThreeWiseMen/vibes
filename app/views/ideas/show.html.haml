@@ -9,15 +9,15 @@
 %p= @idea.score
 
 - if user_signed_in?
-  - if current_user.vote_for_idea(@idea).present? && current_user.vote_for_idea(@idea).kind == 1
-    = link_to fa_icon('thumbs-up 4x', class: :green), idea_upvote_path(@idea)
-  - else
-    = link_to fa_icon('thumbs-o-up 4x', class: :green), idea_upvote_path(@idea)
-
-  - if current_user.vote_for_idea(@idea).present? && current_user.vote_for_idea(@idea).kind == -1
-    = link_to fa_icon('thumbs-down 4x flip-horizontal', class: :red), idea_downvote_path(@idea)
-  - else
-    = link_to fa_icon('thumbs-o-down 4x flip-horizontal', class: :red), idea_downvote_path(@idea)
+  %p
+    %span= fa_icon('thumbs-up 4x', class: [:green],
+                    data: { "bind" => "visible: vote().kind() == 1" })
+    %span= fa_icon('thumbs-o-up 4x', class: [:green, :clickable],
+                    data: { "bind" => "click: upvote, visible: vote().kind() != 1" })
+    %span= fa_icon('thumbs-down 4x flip-horizontal', class: [:red],
+                    data: { "bind" => "visible: vote().kind() == -1" })
+    %span= fa_icon('thumbs-o-down 4x flip-horizontal', class: [:red, :clickable],
+                    data: { "bind" => "click: downvote, visible: vote().kind() != -1" })
 
 %h3 Comments
 

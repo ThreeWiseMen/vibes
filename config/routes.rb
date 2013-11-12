@@ -14,10 +14,13 @@ Vibes::Application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     scope module: :v1 do
-      resources :ideas, only: [] do
+      resources :ideas, only: [:show] do
         get '/upvote' => 'ideas#upvote'
         get '/downvote' => 'ideas#downvote'
+        get '/vote_for_current_user' => 'ideas#vote_for_current_user'
       end
+
+      get '/users/current' => 'users#current'
     end
   end
 end
