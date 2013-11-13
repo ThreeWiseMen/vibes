@@ -6,7 +6,7 @@
 
 %p= @idea.description
 
-%p= @idea.score
+%p{data: { bind: "text: idea().score()"} }
 
 - if user_signed_in?
   %p
@@ -18,6 +18,10 @@
                     data: { "bind" => "visible: vote().kind() == -1" })
     %span= fa_icon('thumbs-o-down 4x flip-horizontal', class: [:red, :clickable],
                     data: { "bind" => "click: downvote, visible: vote().kind() != -1" })
+- else
+  %p
+    Want to vote?
+    = link_to 'Sign In', new_user_session_path
 
 %h3 Comments
 
