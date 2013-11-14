@@ -18,16 +18,17 @@
     %br
     = f.text_field :last_name
 
-  %div
-    = f.label :password
-    %br
-    = f.password_field :password
+  - unless session['devise.user_email'] # omniauth, password not required.
+    %div
+      = f.label :password
+      %br
+      = f.password_field :password
 
-  %div
-    = f.label :password_confirmation
-    %br
-    = f.password_field :password_confirmation
+    %div
+      = f.label :password_confirmation
+      %br
+      = f.password_field :password_confirmation
 
-  %div= f.submit "Sign uppp"
+  %div= f.submit "Sign up"
 
 = render "users/shared/links"

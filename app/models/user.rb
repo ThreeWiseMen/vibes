@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :omniauthable,
-  :recoverable, :rememberable, omniauth_providers: [:facebook, :twitter]
+  :recoverable, :rememberable, :validatable,
+  omniauth_providers: [:facebook, :twitter]
 
   has_many :ideas
   has_many :votes
@@ -11,6 +12,8 @@ class User < ActiveRecord::Base
 
   validates :email, :first_name, :last_name, presence: true
   validates :email, uniqueness: true
+
+  validates :password, presence: true, if: :password_required?
 
   def self.find_for_oauth(auth, signed_in_resorce=nil)
     user = User.find_by_email(auth.info.email)
@@ -53,5 +56,9 @@ class User < ActiveRecord::Base
 
   def vote_for_idea idea
     votes.where(idea: idea).first
+  end
+
+  def password_required?
+    (authentications.empty? || !password.blank?) && super
   end
 end
