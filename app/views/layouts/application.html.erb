@@ -12,7 +12,9 @@
 
     <div id="error"></div>
 
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
 
     <%= javascript_include_tag "knockout-3.0.0", "data-turbolink-track" => true %>
     <%= javascript_include_tag params[:controller], "data-turbolink-tack" => true %>
