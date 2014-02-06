@@ -45,9 +45,14 @@
 	position: relative;
 }
 
+.idea a {
+	text-decoration: none;
+}
+
 .ideaLogo {
     float: left;
     left: 13px;
+    top: 20px;
     position: absolute;
     z-index: 0;
    	margin:auto;
@@ -60,6 +65,7 @@
 	margin: 13px 2px;
 	text-transform: uppercase;
 	position: relative;
+	white-space: nowrap;
 }
 
 .ideaName:hover {
