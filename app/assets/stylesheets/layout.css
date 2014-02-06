@@ -16,6 +16,112 @@
 
 /* #Site Styles
 ================================================== */
+/* 
+	apply a natural box layout model to all elements this adds borders to the INSIDE 
+	http://www.paulirish.com/2012/box-sizing-border-box-ftw/ * { Box-sizing: Border-box } FTW 
+
+*/
+*, *:before, *:after { 
+  	-moz-box-sizing: border-box; 
+  	-webkit-box-sizing: border-box; 
+  	box-sizing: border-box;
+}
+
+/* site header */ 
+#header {
+
+}
+
+
+
+/* The Idea box */ 
+.idea {
+	width: 100%;
+	height: 220px;
+	background: #fff;
+	text-align: center;
+	border: 1px solid #ccc;
+	margin-bottom: 20px; 
+	position: relative;
+}
+
+.ideaLogo {
+    float: left;
+    left: 13px;
+    position: absolute;
+    z-index: 0;
+   	margin:auto;
+	width: 192px;
+    height: 192px;
+}
+
+.ideaName {
+	color: #51b953;
+	margin: 13px 2px;
+	text-transform: uppercase;
+	position: relative;
+}
+
+.ideaName:hover {
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+.ideaSum {
+	color: #000;
+	overflow: hidden;
+	padding-left: 10px;
+	padding-right: 10px;
+	min-height: 105px;
+	max-height: 105px;
+}
+
+.ideaFooter {
+	background: #fff;
+	height: 33px;
+}
+
+.msgCount {
+	background: url(/assets/messages.png) no-repeat;
+	position: relative;
+	top: 3px;
+	left: 3px;
+	width: 30px;
+	height: 30px;
+	display: block;
+	float: left;
+	font-size: 10px;
+}
+
+.msgCount h6 {
+	color: #666;
+	font-size: 10px;
+	position: relative;
+	top: 2px;
+	left: 1px;
+}
+
+.msgCount h6:hover {
+	color: #000;
+	cursor: pointer;
+}
+
+.moreInfo {
+	position: relative;
+	top: 6px;
+	display: block;
+	float: right;
+	padding-right: 10px;
+	font-size: 10px;
+
+}
+
+.moreInfo:hover { 
+	color: #000;
+	cursor: pointer;
+	text-decoration: underline; 
+
+}
 
 /* #Page Styles
 ================================================== */

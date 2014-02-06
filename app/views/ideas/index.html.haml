@@ -2,15 +2,25 @@
 
 = link_to 'Create Idea', new_idea_path, class: :button
 
-%table
-  %thead
-    %tr
-      %td Name
-      %td Leader
-      %td Creator
-  %tbody
-    - @ideas.each do |i|
-      %tr
-        %td= link_to i.name, idea_path(i)
-        %td= i.leader
-        %td= i.user.full_name
+%div{:class => 'sixteen columns'}
+
+- @ideas.each do |i|
+  %div{:class => 'four columns idea'}      
+    %img{:class => 'ideaLogo', :src => "/assets/exampleLogo.png"}
+
+    %a{:href => idea_path(i)}
+      %h3{:class => 'ideaName'}
+        = i.name
+    %p{:class => 'ideaSum'}
+      = i.leader
+    %div{:class => 'ideaFooter'}
+      %div{:class => 'ideaFooter'}
+        %div{:class => 'msgCount'}
+          %h6
+            = 99
+        %div{:class => 'moreInfo'}
+          = 'More...'
+      //, idea_path(i)
+      //    %td= i.leader
+      //    %td= i.user.full_name
+}
