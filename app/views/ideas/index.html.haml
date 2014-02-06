@@ -3,6 +3,7 @@
 = link_to 'Create Idea', new_idea_path, class: :button
 
 %div{:class => 'sixteen columns'}
+  
 
 - @ideas.each do |i|
   %div{:class => 'four columns idea'}      
@@ -17,9 +18,10 @@
       %div{:class => 'ideaFooter'}
         %div{:class => 'msgCount'}
           %h6
-            = 99
+            = i.comments.count
         %div{:class => 'moreInfo'}
-          = 'More...'
+          %a{:href => idea_path(i)}
+            = 'More...'
       //, idea_path(i)
       //    %td= i.leader
       //    %td= i.user.full_name
