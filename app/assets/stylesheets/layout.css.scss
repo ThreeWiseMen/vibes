@@ -1,0 +1,301 @@
+/*
+* Skeleton V1.2
+* Copyright 2011, Dave Gamache
+* www.getskeleton.com
+* Free to use under the MIT license.
+* http://www.opensource.org/licenses/mit-license.php
+* 6/20/2012
+*/
+
+/* Table of Content
+==================================================
+	#Site Styles
+	#Page Styles
+	#Media Queries
+	#Font-Face */
+
+$commonsAccent: #51b953;
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
+}
+
+@mixin circular($radius) {
+  width: $radius*2;
+  height: $radius*2;
+  @include border-radius($radius);
+}
+
+
+
+/* #Site Styles
+================================================== */
+/*
+	apply a natural box layout model to all elements this adds borders to the INSIDE
+	http://www.paulirish.com/2012/box-sizing-border-box-ftw/ * { Box-sizing: Border-box } FTW
+
+*/
+*, *:before, *:after {
+  	-moz-box-sizing: border-box;
+  	-webkit-box-sizing: border-box;
+  	box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Conv_advent_regular';
+}
+
+p {
+
+}
+
+
+/* site header */
+#header {
+  a {
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+  .remove-bottom {
+    margin-top: 40px;
+  }
+}
+
+/* The Idea box / reuse for idea page */
+.idea {
+	width: 100%;
+	height: 220px;
+	background: #fff;
+	text-align: center;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.idea a {
+	text-decoration: none;
+}
+
+.ideaLogo {
+  float: left;
+  left: 13px;
+  top: 20px;
+  position: absolute;
+  z-index: 0;
+  margin:auto;
+	width: 192px;
+  height: 192px;
+}
+
+.ideaName {
+  margin: 13px 2px;
+  color: $commonsAccent;
+  a {
+    color: $commonsAccent;
+    text-transform: uppercase;
+    position: relative;
+    white-space: nowrap;
+  }
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+}
+
+.ideaLeader {
+	color: #000;
+	overflow: hidden;
+	padding-left: 10px;
+	padding-right: 10px;
+	min-height: 99px;
+	max-height: 99px;
+	font-family: 'Conv_advent_light';
+	font-size: 18px;
+}
+
+.ideaFooter {
+	background: #fff;
+	height: 33px;
+}
+
+.userAvatar {
+  @include circular(60px);
+}
+
+.msgCount {
+	background: url(/assets/messages.png) no-repeat;
+	position: relative;
+	top: 3px;
+	left: 3px;
+	width: 30px;
+	height: 30px;
+	display: block;
+	float: left;
+	font-size: 10px;
+}
+
+.msgCount h6 {
+	color: #666;
+	font-size: 10px;
+	position: relative;
+	top: 2px;
+	left: 0px;
+}
+
+.msgCount h6:hover {
+	color: #000;
+	cursor: pointer;
+}
+
+.moreInfo {
+	position: relative;
+	top: 6px;
+	display: block;
+	float: right;
+	padding-right: 10px;
+	font-size: 12px;
+}
+
+.moreInfo:hover {
+	color: #000;
+	cursor: pointer;
+	text-decoration: underline;
+}
+
+/* #Page Styles */
+/* idea details page */
+.ideaHeader {
+	width: 100%;
+	height: 220px;
+	background: #fff;
+	text-align: center;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	position: relative;
+}
+
+.ideaBrief {
+	float: right !important;
+}
+
+h1.ideaName  {
+	font-size: 4em;
+	line-height: 1.2em;
+}
+
+.bigger {
+	font-size: 1.7em;
+	line-height: 1.3em;
+}
+
+
+.ideaOwner {
+	width: 100%;
+	height: 440px;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.ideaDescription {
+	width: 100%;
+	min-height: 340px;
+	position: relative;
+	float: left;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+  padding-left: 15px;
+}
+
+.ideaVotes {
+	width: 100%;
+	height: 120px;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+.ideaMessages {
+	width: 100%;
+	min-height: 200px;
+	border: 1px solid #ccc;
+	margin-bottom: 20px;
+}
+
+
+
+
+
+
+/* #Media Queries
+================================================== */
+
+	/* Smaller than standard 960 (devices and browsers) */
+	@media only screen and (max-width: 959px) {}
+
+	/* Tablet Portrait size to standard 960 (devices and browsers) */
+	@media only screen and (min-width: 768px) and (max-width: 959px) {}
+
+	/* All Mobile Sizes (devices and browser) */
+	@media only screen and (max-width: 767px) {}
+
+	/* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
+	@media only screen and (min-width: 480px) and (max-width: 767px) {}
+
+	/* Mobile Portrait Size to Mobile Landscape Size (devices and browsers) */
+	@media only screen and (max-width: 479px) {}
+
+
+/* #Font-Face
+================================================== */
+/* 	This is the proper syntax for an @font-face file
+		Just create a "fonts" folder at the root,
+		copy your FontName into code below and remove
+		comment brackets */
+
+/*	@font-face {
+	    font-family: 'FontName';
+	    src: url('../fonts/FontName.eot');
+	    src: url('../fonts/FontName.eot?iefix') format('eot'),
+	         url('../fonts/FontName.woff') format('woff'),
+	         url('../fonts/FontName.ttf') format('truetype'),
+	         url('../fonts/FontName.svg#webfontZam02nTh') format('svg');
+	    font-weight: normal;
+	    font-style: normal; }
+*/
+@font-face {
+	font-family: 'Conv_advent_regular';
+	src: font-url('advent_regular.eot');
+	src: font-url('advent_regular.eot?iefix') format('eot'),
+       font-url('advent_regular.woff') format('woff'),
+       font-url('advent_regular.ttf') format('truetype'),
+       font-url('advent_regular.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_advent_light';
+	src: font-url('advent_light.eot');
+	src: font-url('advent_light.eot?iefix') format('eot'),
+       font-url('advent_light.woff') format('woff'),
+       font-url('advent_light.ttf') format('truetype'),
+       font-url('advent_light.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_advent_bold';
+	src: font-url('advent_bold.eot');
+	src: font-url('advent_bold.eot?iefix') format('eot'),
+       font-url('advent_bold.woff') format('woff'),
+       font-url('advent_bold.ttf') format('truetype'),
+       font-url('advent_bold.svg') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}

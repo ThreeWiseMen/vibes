@@ -1,0 +1,22 @@
+!!!html
+%html
+  %head
+    %title Vibes
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag params[:controller], media: 'all', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+  %body
+    .error
+    .container
+      .sixteen.columns
+        #header
+          .logo
+          %nav#topNav
+          %h1.remove-bottom= link_to 'Commons::Vibes', root_path
+          %h5 Layout Version 1.0
+          %hr
+      = yield
+
+    = javascript_include_tag 'knockout-3.0.0', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag params[:controller], 'data-turbolinks-track' => true
