@@ -47,11 +47,11 @@ function IdeaViewModel() {
       var directionyThumbs = {
         true: {
           true: 'fa-thumbs-o-up',
-          false: 'fa-thumbs-o-down'
+          false: 'fa-thumbs-up',
         },
         false: {
-          true: 'fa-thumbs-up',
-          false: 'fa-thumbs-down'
+          true: 'fa-thumbs-o-down',
+          false: 'fa-thumbs-down',
         }
       };
 
@@ -60,14 +60,15 @@ function IdeaViewModel() {
         'fa-4x': 1
       };
 
-      if (direction) {
-        s['green'] = 1; // True is up-vote
-      } else {
-        s['red'] = 1;
-        s['fa-flip-horizontal'] = 1;
-      }
+      s['green'] = direction ? 1:0;
+      s['red'] = direction ? 0:1;
+
+      s['fa-flip-horizontal'] = direction ? 0:1;
 
       s[directionyThumbs[direction][availability]] = 1;
+      s[directionyThumbs[!direction][availability]] = 0;
+      s[directionyThumbs[direction][!availability]] = 0;
+      s[directionyThumbs[!direction][!availability]] = 0;
 
       return s;
     }
@@ -87,33 +88,37 @@ function IdeaViewModel() {
     }.bind(this));
 
     this.upvote = function() {
+      if (self.isUpVoteCastable()) {
         $("#error").text('');
         $.getJSON("/api/ideas/" + self.idea().id() + "/upvote", function(data) {
-            if (data['error']) {
-                $("#error").text(data['error']);
-            } else {
-                self.vote().id(data['id']);
-                self.vote().ideaID(data['idea_id']);
-                self.vote().userID(data['user_id']);
-                self.vote().kind(data['kind']);
-            }
-            updateIdea();
+          if (data['error']) {
+            $("#error").text(data['error']);
+          } else {
+            self.vote().id(data['id']);
+            self.vote().ideaID(data['idea_id']);
+            self.vote().userID(data['user_id']);
+            self.vote().kind(data['kind']);
+          }
+          updateIdea();
         });
+      }
     };
 
     this.downvote = function() {
+      if (self.isDownVoteCastable()) {
         $('#error').text('');
         $.getJSON("/api/ideas/" + self.idea().id() + "/downvote", function(data) {
-            if (data['error']) {
-                $("#error").text(data['error']);
-            } else {
-                self.vote().id(data['id']);
-                self.vote().ideaID(data['idea_id']);
-                self.vote().userID(data['user_id']);
-                self.vote().kind(data['kind']);
-            }
-            updateIdea();
+          if (data['error']) {
+            $("#error").text(data['error']);
+          } else {
+            self.vote().id(data['id']);
+            self.vote().ideaID(data['idea_id']);
+            self.vote().userID(data['user_id']);
+            self.vote().kind(data['kind']);
+          }
+          updateIdea();
         });
+      }
     };
 
     function updateIdea() {
@@ -127,6 +132,8 @@ function IdeaViewModel() {
                 self.idea().description(idea['description']);
                 self.idea().userID(idea['userID']);
                 self.idea().createdAt(idea['created_at']);
+                self.idea().upVoteCount(idea['upvote_count']);
+                self.idea().downVoteCount(idea['downvote_count']);
                 self.idea().score(idea['score']);
             }
             console.log("UPDATED");

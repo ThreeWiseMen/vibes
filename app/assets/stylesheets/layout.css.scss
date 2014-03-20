@@ -122,6 +122,46 @@ p {
 	height: 33px;
 }
 
+.voteIcons {
+  position: relative;
+  border: 1px solid blue;
+  height: 97px;
+  display: block;
+  .thumbIcon {
+    position: absolute;
+    display: block;
+    width: 64px;
+    height: 64px;
+    margin: auto;
+    top: 0; bottom: 0; left: 0; right: 0;
+    &.up {
+      right: 40%;
+    }
+    &.down {
+      left: 40%;
+    }
+  }
+  .votes {
+    pointer-events: none;
+    position: absolute;
+    color: #000;
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    font-size: 16pt;
+    font-weight: bold;
+    top: 0; bottom: 0; left: 0; right: 0;
+    &.up {
+      bottom: 0;
+      right: 35%;
+    }
+    &.down {
+      bottom: 18%;
+      left: 35%;
+    }
+  }
+}
+
 .userAvatar {
   @include circular(60px);
 }
