@@ -1,4 +1,44 @@
-= link_to 'Back To Ideas', ideas_path, class: :button
+.sixteen.columns
+  .twelve.columns.alpha.clearfix
+    .ideaHeader
+      .four.columns.ideaLogo.clearfix
+        =image_tag 'exampleLogoFull.png'
+      .eight.columns.ideaBrief
+        %h1.ideaName= @idea.name
+        %p.ideaLeader.bigger= @idea.leader
+    .ideaDescription
+      %h3= @idea.description
+  .four.columns.omega
+    .ideaOwner
+      %h4 Idea Ownership
+      =image_tag 'exampleUser.jpg', class: 'userAvatar'
+      %h4= @idea.user.full_name
+    .ideaVotes
+      %h6 Votes
+      %p.voteIcons
+        .thumbUpIcon{ :'data-bind' => 'css: thumbUpIconClasses' }
+        .thumbDownIcon{ :'data-bind' => 'css: thumbDownIconClasses' }
+      %p
+        - if user_signed_in?
+          // Upvote Not Castable
+          %span= fa_icon('thumbs-up 4x', class: [:green],
+                          data: { "bind" => "visible: vote().kind() == 1" })
+          // Upvote Castable
+          %span= fa_icon('thumbs-o-up 4x', class: [:green, :clickable],
+                          data: { "bind" => "click: upvote, visible: vote().kind() != 1" })
+          // Downvote Not Castable
+          %span= fa_icon('thumbs-down 4x flip-horizontal', class: [:red],
+                          data: { "bind" => "visible: vote().kind() == -1" })
+          // Downvote Castable
+          %span= fa_icon('thumbs-o-down 4x flip-horizontal', class: [:red, :clickable],
+                          data: { "bind" => "click: downvote, visible: vote().kind() != -1" })
+        - else
+          Want to vote?
+          = link_to 'Sign In', new_user_session_path
+      %p{data: { bind: "text: idea().score()"} }
+
+.sixteen.columns.ideaMessages
+  Messages to go here...
 
 %h2= @idea.name
 
@@ -6,22 +46,7 @@
 
 %p= @idea.description
 
-%p{data: { bind: "text: idea().score()"} }
 
-- if user_signed_in?
-  %p
-    %span= fa_icon('thumbs-up 4x', class: [:green],
-                    data: { "bind" => "visible: vote().kind() == 1" })
-    %span= fa_icon('thumbs-o-up 4x', class: [:green, :clickable],
-                    data: { "bind" => "click: upvote, visible: vote().kind() != 1" })
-    %span= fa_icon('thumbs-down 4x flip-horizontal', class: [:red],
-                    data: { "bind" => "visible: vote().kind() == -1" })
-    %span= fa_icon('thumbs-o-down 4x flip-horizontal', class: [:red, :clickable],
-                    data: { "bind" => "click: downvote, visible: vote().kind() != -1" })
-- else
-  %p
-    Want to vote?
-    = link_to 'Sign In', new_user_session_path
 
 %h3 Comments
 

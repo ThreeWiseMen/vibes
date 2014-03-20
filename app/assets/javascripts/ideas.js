@@ -7,7 +7,9 @@ function Idea(data) {
     this.description = ko.observable(data['description'] || "");
     this.userID = ko.observable(data['user_id'] || -1);
     this.createdAt = ko.observable(data['created_at'] || "");
-    this.score = ko.observable(data['score'] || "");
+    this.upVoteCount = ko.observable(data['upvote_count'] || 0);
+    this.downVoteCount = ko.observable(data['downvote_count'] || 0);
+    this.score = ko.observable(data['score'] || 0);
 }
 
 function Vote(data) {
@@ -32,6 +34,57 @@ function IdeaViewModel() {
     window.setInterval(updateIdea, 60000);
     retrieveUser();
     retrieveVote();
+
+    this.isUpVoteCastable = ko.computed(function() {
+      return this.vote().kind() != 1
+    }.bind(this));
+
+    this.isDownVoteCastable = ko.computed(function() {
+      return this.vote().kind() != -1
+    }.bind(this));
+
+    this.thumbIconClasses = function(direction, availability) {
+      var directionyThumbs = {
+        true: {
+          true: 'fa-thumbs-o-up',
+          false: 'fa-thumbs-o-down'
+        },
+        false: {
+          true: 'fa-thumbs-up',
+          false: 'fa-thumbs-down'
+        }
+      };
+
+      var s = {
+        'fa': 1,
+        'fa-4x': 1
+      };
+
+      if (direction) {
+        s['green'] = 1; // True is up-vote
+      } else {
+        s['red'] = 1;
+        s['fa-flip-horizontal'] = 1;
+      }
+
+      s[directionyThumbs[direction][availability]] = 1;
+
+      return s;
+    }
+
+    this.thumbUpIconClasses = ko.computed(function() {
+      var c = this.thumbIconClasses(true, this.isUpVoteCastable());
+      console.log("Thumb Up Classes");
+      console.log(c);
+      return c;
+    }.bind(this));
+
+    this.thumbDownIconClasses = ko.computed(function() {
+      var c = this.thumbIconClasses(false, this.isDownVoteCastable());
+      console.log("Thumb Down Classes");
+      console.log(c);
+      return c;
+    }.bind(this));
 
     this.upvote = function() {
         $("#error").text('');
