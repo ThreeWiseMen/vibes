@@ -5,7 +5,7 @@ module Api
       def show
         @idea = Idea.find(params[:id])
 
-        render json: @idea.as_json(methods: :score)
+        render json: @idea.as_json(methods: [:score, :upvote_count, :downvote_count])
       end
 
       def upvote

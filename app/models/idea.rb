@@ -21,7 +21,15 @@ class Idea < ActiveRecord::Base
     votes.where(kind: -1)
   end
 
+  def upvote_count
+    upvotes.count
+  end
+
+  def downvote_count
+    downvotes.count
+  end
+
   def score
-    "u: #{upvotes.count} d: #{downvotes.count} t: #{votes.count}"
+    votes.sum(:kind)
   end
 end
