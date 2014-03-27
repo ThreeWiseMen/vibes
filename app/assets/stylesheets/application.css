@@ -14,19 +14,3 @@
  += require layout
  *= require_self
  */
-
-.green {
-  color: green;
-}
-
-.red {
-  color: red;
-}
-
-li.hidden {
-  display: none;
-}
-
-.clickable {
-  cursor: pointer;
-}

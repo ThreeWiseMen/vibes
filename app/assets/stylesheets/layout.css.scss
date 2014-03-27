@@ -14,21 +14,7 @@
 	#Media Queries
 	#Font-Face */
 
-$commonsAccent: #51b953;
-
-@mixin border-radius($radius) {
-  border-radius: $radius;
-  -moz-border-radius: $radius;
-  -webkit-border-radius: $radius;
-}
-
-@mixin circular($radius) {
-  width: $radius*2;
-  height: $radius*2;
-  @include border-radius($radius);
-}
-
-
+@import "variables";
 
 /* #Site Styles
 ================================================== */
@@ -265,7 +251,21 @@ h1.ideaName  {
 	margin-bottom: 20px;
 }
 
+.green {
+  color: green;
+}
 
+.red {
+  color: red;
+}
+
+li.hidden {
+  display: none;
+}
+
+.clickable {
+  cursor: pointer;
+}
 
 
 
