@@ -17,6 +17,4 @@
           %hr
       = yield
 
-    = javascript_include_tag 'knockout-3.0.0', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    = javascript_include_tag params[:controller], 'data-turbolinks-track' => true
+    = javascript_include_tag 'require-2.1.0', :'data-main' => 'application'

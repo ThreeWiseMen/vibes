@@ -1,0 +1,17 @@
+<h2>Ideas</h2>
+
+<div class="sixteen columns" data-bind="foreach: ideas">
+  <div class="four columns idea">
+    <img class="ideaLogo" src="/assets/exampleLogo.png">
+    <h2 class="ideaName" data-bind="text: name"></h2>
+    <p class="ideaLeader" data-bind="text: leader"></p>
+    <div class="ideaFooter">
+      <div class="msgCount">
+        <h6 data-bind="text: comment_count"></h6>
+      </div>
+      <div class="moreInfo">
+        <a class="moreInfo" data-bind="click: $parent.navigateToIdea">More...</a>
+      </div>
+    </div>
+  </div>
+</div>

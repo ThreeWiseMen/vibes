@@ -1,6 +1,9 @@
 module Api
   module V1
     class IdeasController < ApiController
+      def index
+        respond_with(Idea.all)
+      end
 
       def show
         @idea = Idea.find(params[:id])

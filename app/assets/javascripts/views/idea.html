@@ -1,0 +1,49 @@
+<div class="sixteen columns">
+  <div class="twelve columns alpha clearfix">
+    <div class="ideaHeader">
+      <div class="four columns ideaLogo clearfix">
+        <%= image_tag 'exampleLogoFull.png' %>
+      </div>
+      <div class="eight columns ideaBrief">
+        <h1 class="ideaName">
+          <%= @idea.name %>
+        </h1>
+        <p class="ideaLeader bigger">
+          <%= @idea.leader %>
+        </p>
+      </div>
+    </div>
+    <div class="ideaDescription">
+      <h3>
+        <%= @idea.description %>
+      </h3>
+    </div>
+  </div>
+  <div class="four columns omega">
+    <div class="ideaOwner">
+      <h4>Idea Ownership</h4>
+      <%= image_tag 'exampleUser.jpg', class: 'userAvatar' %>
+      <h4>
+        <%= @idea.user.full_name %>
+      </h4>
+    </div>
+    <div class="ideaVotes">
+      <h6>Votes</h6>
+      <div class="voteIcons">
+        <% if user_signed_in? %>
+          <div class="thumbIcon up" data-bind="click: upvote, css: thumbUpIconClasses"></div>
+          <div class="votes up" data-bind="text: idea().upVoteCount"></div>
+          <div class="thumbIcon down" data-bind="click: downvote, css: thumbDownIconClasses"></div>
+          <div class="votes down" data-bind="text: idea().downVoteCount"></div>
+        <% else %>
+          Want to vote?
+          <%= link_to 'Sign In', new_user_session_path %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="sixteen columns ideaMessages">
+  <h4>Message History</h4>
+  <%= render 'comments/comments', comment: @comment, comments: @comments %>
+</div>
