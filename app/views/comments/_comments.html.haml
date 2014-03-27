@@ -1,9 +1,8 @@
 = render 'comments/form', comment: comment
 
-%ul
+%ul.comments
   - if comments.present?
     - comments.each do |c|
-      %li
-        = c.user.full_name
-        %br
-        = c.comment
+      %li.comment
+        .user= c.user.full_name
+        .text= c.comment

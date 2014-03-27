@@ -1,7 +1,5 @@
-= semantic_form_for comment do |f|
-  %fieldset
-    %legend New Comment
-
-    = f.input :idea_id, as: :hidden
-    = f.text_area :comment
-    = f.submit
+.enterComment
+  = semantic_form_for comment do |f|
+    %fieldset
+      = f.text_area :comment
+      = f.submit

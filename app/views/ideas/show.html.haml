@@ -26,16 +26,5 @@
           = link_to 'Sign In', new_user_session_path
 
 .sixteen.columns.ideaMessages
-  Messages to go here...
-
-%h2= @idea.name
-
-%h4= @idea.leader
-
-%p= @idea.description
-
-
-
-%h3 Comments
-
-= render 'comments/comments', comment: @comment, comments: @comments
+  %h4 Message History
+  = render 'comments/comments', comment: @comment, comments: @comments
